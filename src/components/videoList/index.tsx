@@ -1,7 +1,8 @@
 import React from 'react'
+import { Container } from './styled'
 
 const videoList = () => {
-  return <div><h1>Video List</h1></div>
+  return <Container><h1>Video List</h1></Container>
 }
 
 export default videoList
