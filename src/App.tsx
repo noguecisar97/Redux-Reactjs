@@ -1,16 +1,20 @@
 import React from 'react';
-import SearchBar from './components/searchBar';
-import VideoList from './components/videoList';
-import VideoPlayer from './components/videoPlayer';
-import { Container} from './styledApp'
+import SearchBar from './components/searchBar/index';
+import VideoList from './components/videoList/index';
+import VideoPlayer from './components/videoPlayer/index';
+import { Container } from './styledApp';
+import { Provider } from 'react-redux';
+import store from './store/index';
 
 function App() {
   return (
-    <Container>
-      <SearchBar />
-      <VideoList />
-      <VideoPlayer />
-    </Container>
+    <Provider store={store} >
+      <Container>
+        <SearchBar />
+        <VideoList />
+        <VideoPlayer />
+      </Container>
+    </Provider>
   );
 }
 

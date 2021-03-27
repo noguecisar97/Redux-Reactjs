@@ -1,9 +1,7 @@
-import { YoutubeDataAPI } from 'youtube-v3-api';
+import YoutubeSearch from 'youtube-api-v3-search'
 import YTapi from '../../../private/api'
 
 const API_KEY = YTapi;
-
-const api = new YoutubeDataAPI(API_KEY);
 
 export const buscaVideoInicio = () => {
   return {
@@ -13,7 +11,7 @@ export const buscaVideoInicio = () => {
   }
 }
 
-export const buscaVideoSucesso = (videos: any) => {
+export const buscaVideoSucesso = (videos) => {
   return {
     type: 'BUSCA_VIDEO_SUCESSO',
     videos,
@@ -30,11 +28,11 @@ export const buscaVideoErro = () => {
   }
 }
 
-export const buscaVideo = (termo: string) => {
-  return (dispatch: (arg0: { type: string; carregando: boolean; erro: boolean; videos?: any; }) => void) => {
+export const buscaVideo = (termo) => {
+  return dispatch => {
     dispatch(buscaVideoInicio())
-    api.searchVideo(API_KEY, {q: termo})
-      .then((data: any) => dispatch(buscaVideoSucesso(data.items)))
+    YoutubeSearch(API_KEY, {q: termo})
+      .then((data) => dispatch(buscaVideoSucesso(data.items)))
       .catch(() => dispatch(buscaVideoErro()))
   }
 }
